@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+
+.BackGround {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit:cover ;
+  z-index: -1;
+  filter: blur(5px);
+}
+
+.all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+
+.principalSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+    margin: 20px 0;
+    border-radius: 20px;
+    background: linear-gradient(90deg, rgba(230, 229, 255, 0.527) 0%, rgba(204,204,214,0.5298494397759104) 50%, rgba(220,249,255,0.7203256302521008) 100%);
+}
+
+.principalImg {
+    height: 30%;
+}
+
+ .titleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /*
+  background-color: rgba(255, 255, 255, 0.288);
+  border-radius: 20px;
+  margin: 20px 0;
+  padding: 0 10px;
+  */
+} 
+
+.title {
+    font-family: 'Poppins', sans-serif;
+    color: rgb(0, 42, 70); /* Color del texto del título */
+    font-size: 36px; /* Tamaño del título */
+    text-align: center; /* Alineación del texto al centro */
+    text-transform: uppercase; /* Convertir el texto a mayúsculas */
+    margin-top: 30px; /* Margen superior */
+    font-weight: bold;
+    
+}
+
+.subTitle {
+  font-family: 'Poppins', sans-serif;
+  color: rgb(0, 42, 70); /* Color del texto del título */
+  font-weight: bold;
+  font-size: 26px; /* Tamaño del título */
+  text-align: center;
+}
+
+
+.boton {
+    margin: 20px 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #5fb662; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Quitamos el borde del botón */
+    padding: 10px 20px; /* Espaciado interno (vertical horizontal) */
+    border-radius: 5px; /* Borde redondeado */
+    cursor: pointer; /* Cambiamos el cursor al pasar sobre el botón */
+    font-size: 16px; /* Tamaño del texto del botón */
+  }
+
+  /* Cambio de color al pasar el ratón sobre el botón */
+  .boton:hover {
+    background-color: #45a049; /* Color de fondo al pasar el ratón */
+  }
+
+  /* Estilo para el botón cuando está presionado */
+  .boton:active {
+    background-color: #3e8e41; /* Color de fondo cuando se presiona */
+  }
+
+  /* Estilo para el botón cuando está deshabilitado */
+  .boton:disabled {
+    opacity: 0.6; /* Reduce la opacidad del botón deshabilitado */
+    cursor: not-allowed; /* Cambia el cursor a "no permitido" */
+  }
+
+  .code {
+    border-radius: 20px;
+    font-family: monospace;
+    font-weight:bold;
+    white-space: pre;
+    padding: 10px;
+    border: 1px solid #272727;
+    background-color: #2a2e53d5;
+    height: auto;
+    width: 70%;
+    color: rgb(233, 233, 233);
+  }
+
+  .comentario {
+    color: #979797;
+  }
+
+  .keyword1 {
+    color: rgb(210, 156, 255);
+  }
+  .keyword2 {
+    color: rgb(72, 255, 0);
+  }
+  .keyword3 {
+    color: rgb(113, 158, 255);
+  }
+  .keyword4 {
+    color: orange;
+  }
+  .keyword5 {
+    color: rgb(36, 255, 255);
+  }
+  .keyword6 {
+    color: rgb(70, 221, 163);
+  }

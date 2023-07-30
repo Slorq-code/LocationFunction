@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/imagenes/yoFavicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/normalize.css">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Funcion Ubicacion</title>
+</head>
+<body>
+    <img class="BackGround"  src="/assets/imagenes/WordLocation.gif" alt="BackGround">
+    <div class="all" >
+        <section class="principalSection">
+            <div class="titleContainer" >
+                <h1 class="title" >Funcion reutilizable para obtener <br> la ubicacion</h1>
+                <h3 class="subTitle" >Desarrollado por Andres F. Rodriguez <br> para Denis</h3>
+            </div>
+
+            <div class="code">
+<span class="comentario">/* Función para obtener data de ubicación usando</span>
+<span class="comentario">los servicios de geosensores del telefono */</span>
+
+<span><span class="keyword1">function</span> <span class="keyword3">obtenerUbicacion</span>(<span class="keyword4">opciones</span>) {</span>
+
+<span class="comentario">  // Devolver una promesa para manejar el resultado asincrónico de obtener la ubicación.</span>
+
+<span>  <span class="keyword1">return</span> <span class="keyword5">new Promise</span>((<span class="keyword4">resolve</span>, <span class="keyword4">reject</span>) <span class="keyword1">=></span> {</span>
+
+<span class="comentario">    // Función interna para obtener la ubicación.</span>
+
+<span>    <span class="keyword1">const</span> <span class="keyword3">obtenerPosicion</span> = () <span class="keyword1">=></span> {</span>
+
+<span class="comentario">      // Verificar si el navegador soporta geolocalización.</span>
+
+<span>      <span class="keyword1">if</span> (<span class="keyword2">"geolocation"</span> in navigator) {</span>
+
+<span class="comentario">        // Configuración de opciones para la geolocalización.</span>
+
+<span>        <span class="keyword1">const</span> opcionesGeolocalizacion = {</span>
+<span>          <span class="keyword6">enableHighAccuracy</span>: opciones <span class="keyword1">&&</span> opciones<span class="keyword5">.enableHighAccuracy</span> ? <span class="keyword4">true</span> : <span class="keyword4">false</span>,</span>
+
+<span class="comentario">          // Tiempo máximo para obtener la ubicación (en milisegundos) </span>
+
+<span>          <span class="keyword6">timeout</span>: opciones <span class="keyword1">&&</span> opciones<span class="keyword5">.timeout</span> <span class="keyword1">?</span> opciones<span class="keyword5">.timeout</span> : <span class="keyword4">10000</span>, </span>
+
+<span class="comentario">          // Tiempo máximo de antigüedad de la caché de la ubicación (en milisegundos)</span>
+
+<span>          <span class="keyword6">maximumAge</span>: opciones <span class="keyword1">&&</span> opciones<span class="keyword5">.maximumAge</span> <span class="keyword1">?</span> opciones<span class="keyword5">.maximumAge</span> : <span class="keyword4">0</span>,</span>
+<span>        };</span>
+
+<span class="comentario">        // Solicitar la ubicación actual al navegador.</span>
+
+<span>        navigator<span class="keyword5">.geolocation</span><span class="keyword3">.getCurrentPosition</span>(</span>
+
+<span class="comentario">          // Éxito: se obtuvo la ubicación correctamente.</span>
+
+<span>          <span class="keyword1">function</span> (<span class="keyword4">posicion</span>) {</span>
+
+<span class="comentario">            // Extraer información de la posición obtenida.</span>
+
+<span>            <span class="keyword1">const</span> latitud = posicion<span class="keyword5">.coords.latitude</span><span class="keyword3">.toFixed</span>(<span class="keyword4">7</span>);</span>
+<span>            <span class="keyword1">const</span> longitud = posicion<span class="keyword5">.coords.longitude</span><span class="keyword3">.toFixed</span>(<span class="keyword4">7</span>);</span>
+<span>            <span class="keyword1">const</span> altitud = posicion<span class="keyword5">.coords.altitude</span> || <span class="keyword4">null</span>;</span>
+<span>            <span class="keyword1">const</span> hora = new <span class="keyword3">Date</span>(posicion<span class="keyword5">.timestamp</span>)<span class="keyword3">.toLocaleTimeString</span>();</span>
+<span>            <span class="keyword1">const</span> googleMapsLink = <span class="keyword2">`https://wvww.google.com/maps/place/<span class="keyword5">${</span>latitud<span class="keyword5">}</span>+<span class="keyword5">${</span>longitud<span class="keyword5">}</span>`</span>;</span>
+
+<span class="comentario">            // Crear un objeto con los datos de ubicación.</span>
+
+<span>            <span class="keyword1">const</span> ubicacion = {</span>
+<span>              latitud,</span>
+<span>              longitud,</span>
+<span>              altitud,</span>
+<span>              hora,</span>
+<span>              googleMapsLink,</span>
+<span>            };</span>
+
+<span class="comentario">            // Mostrar información en la consola con los datos de la ubicación.</span>
+
+<span>            console<span class="keyword3">.log</span>(<span class="keyword2">"La latitud es: "</span> + latitud);</span>
+<span>            console<span class="keyword3">.log</span>(<span class="keyword2">"La longitud es: "</span> + longitud);</span>
+<span>            console<span class="keyword3">.log</span>(<span class="keyword2">"La altitud es: "</span> + (altitud <span class="keyword1">!==</span> <span class="keyword4">null</span> <span class="keyword1">?</span> altitud : "No disponible"));</span>
+<span>            console<span class="keyword3">.log</span>(<span class="keyword2">"La hora de la muestra es: "</span> + hora);</span>
+<span>            console<span class="keyword3">.log</span>(<span class="keyword2">"El link para buscar la ubicación en Google Maps es el siguiente: "</span> + googleMapsLink);</span>
+
+<span class="comentario">            // Resolver la promesa con el objeto de ubicación.</span>
+
+<span>            <span class="keyword3">resolve</span>(ubicacion);</span>
+<span>          },</span>
+
+<span class="comentario">          // Error: no se pudo obtener la ubicación o se denegó el permiso.</span>
+
+<span>          <span class="keyword1">function</span> (<span class="keyword4">error</span>) {</span>
+
+<span class="comentario">            // Verificar si el error es por permiso denegado.</span>
+
+<span>            <span class="keyword1">if</span> (error<span class="keyword5">.code</span> <span class="keyword1">===</span> error.<span class="keyword4">PERMISSION_DENIED</span>) {</span>
+    
+<span class="comentario">              // Mensaje para indicar que se necesita permiso para acceder a la ubicación.</span>
+
+<span>              <span class="keyword1">const</span> mensaje = <span class="keyword2">"Se requiere permiso para acceder a la ubicación. Por favor, otorga los permisos para continuar."</span>;</span>
+
+<span class="comentario">              // Crear un botón para permitir que el usuario intente nuevamente obtener la ubicación.</span>
+
+<span>              <span class="keyword1">const</span> botonPermitir = document<span class="keyword3">.createElement</span>("button");</span>
+<span>              botonPermitir<span class="keyword5">.textContent</span> = <span class="keyword2">"Aceptar"</span>;</span>
+<span>              botonPermitir<span class="keyword3">.addEventListener</span>(<span class="keyword2">"click"</span>, () <span class="keyword1">=></span> {</span>
+
+<span class="comentario">                /* Cuando el usuario hace clic en el botón, volvemos a intentar obtener</span>
+<span class="comentario">                la ubicación llamando nuevamente la función obtenerPosicion(). */</span>
+
+<span>                <span class="keyword3">obtenerPosicion</span>();</span>
+<span>              });</span>
+
+<span class="comentario">              // Mostramos un alert con el mensaje y el botón para permitir el acceso a la ubicación.</span>
+
+<span>              <span class="keyword3">alert</span>(mensaje);</span>
+
+<span class="comentario">              // Rechazamos la promesa con un mensaje indicando que se requiere permiso para acceder a la ubicación.</span>
+
+<span>              <span class="keyword3">reject</span>(<span class="keyword2">"Se requiere permiso para acceder a la ubicación."</span>);</span>
+<span>            } <span class="keyword1">else</span> {</span>
+
+<span class="comentario">              /* Otro tipo de error, se puede intentar nuevamente o mostrar un mensaje de error.</span>
+<span class="comentario">               Rechazamos la promesa con un mensaje de error específico. */</span>
+
+<span>              <span class="keyword3">reject</span>(<span class="keyword2">"Error al obtener la ubicación: "</span> + error.<span class="keyword5">message</span>);</span>
+<span>            }</span>
+<span>          },</span>
+
+<span class="comentario">          // Pasamos las opciones de configuración a la función getCurrentPosition().</span>
+
+<span>          opcionesGeolocalizacion</span>
+<span>        );</span>
+<span>      } <span class="keyword1">else</span> {</span>
+
+<span class="comentario">        // El navegador no soporta la geolocalización, rechazamos la promesa con un mensaje.</span>
+
+<span>        <span class="keyword3">reject</span>(<span class="keyword2">"El navegador no soporta la geolocalización."</span>);</span>
+<span>      }</span>
+<span>    };</span>
+
+<span class="comentario">    // Llamamos a la función interna para comenzar a obtener la ubicación.</span>
+
+<span>    <span class="keyword3">obtenerPosicion()</span>;</span>
+<span>  });</span>
+<span>}</span>
+              </div>
+  
+            <div>
+                <button class="boton" onclick=""> Repositorio </button>
+                <button class="boton" onclick=""> En caso de preguntas <br> comunicarse con <br> el desarrollador </button>                
+                <button class="boton" onclick="obtenerUbicacion()"> Testear el codigo </button>
+            </div>
+            
+        </section>
+
+    </div>
+
+    <script src="./script.js"></script>
+    <script src="./assets/leaflet/leaflet.js"></script>
+</body>
+</html>
