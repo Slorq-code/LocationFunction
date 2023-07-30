@@ -17,6 +17,7 @@
   justify-content: center;
   align-items: center;
   position: absolute;
+  flex-direction: column;
   top: 0;
   left: 0;
   width: 100%;
@@ -141,4 +142,16 @@
   }
   .keyword6 {
     color: rgb(70, 221, 163);
+  }
+
+
+
+  .resultados {
+    font-size: 25px;
+    color: white;
+    background-color: #5fb662;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 0;
   }
