@@ -84,3 +84,12 @@ console.log("Conexion con la logica del servicio resuelta!")
       });
     }
     
+
+
+
+
+
+    function mostrarAlerta() {
+      alert("Mira la consola");
+      obtenerUbicacion();
+    }
