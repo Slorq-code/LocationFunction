@@ -105,7 +105,8 @@
   .boton:disabled {
     opacity: 0.6; /* Reduce la opacidad del botón deshabilitado */
     cursor: not-allowed; /* Cambia el cursor a "no permitido" */
-  }
+  } 
+  
 
   .code {
     border-radius: 20px;
