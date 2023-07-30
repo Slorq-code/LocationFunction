@@ -1,4 +1,5 @@
-alert("Esta interfaz debe ser utilizada en un ordenador.")
+alert("Esta interfaz no se ve bien en un movil")
+
 function mostrarMensaje() {
   setTimeout(function() {
     alert("Esta interfaz está diseñada para ordenadores.");
